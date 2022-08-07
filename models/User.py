@@ -17,7 +17,6 @@ class User(db.Model):
             'id': self.id,
             'name': self.name,
             'email': self.email,
-            'city': self.city,
-            'state': self.state,
+            'age': self.age,
             'address': self.address
         }

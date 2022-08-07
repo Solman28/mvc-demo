@@ -1,0 +1,65 @@
+{% extends 'base.j2' %}
+
+{% block title %} Index Users {% endblock %}
+{% block content %}    
+    <h1>Listado de Usuarios</h1>
+    <hr>
+
+    {% if (users | length)>0 %}
+        <div class="overflow-x-auto relative shadow sm:rounded-md">
+            <table class="w-full text-sm text-left text-gray-500">
+                <thead class="text-xs text-gray-500 uppercase bg-gray-150 border-gray-800">
+                    <tr>
+                        <th scope="col" class="py-3 px-6">
+                            Nombre
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Email
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Edad
+                        </th>
+                        <th scope="col" class="py-3 px-6">
+                            Dirección
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        {% if loop.index % 2 == 0 %}
+                            {% set bg_color = 'bg-white' %}
+                        {% else %}
+                            {% set bg_color = 'bg-yellow-50' %}
+                        {% endif %}
+            
+                        <tr class="{{ bg_color }} border-b">
+                            <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                                {{ user.name | upper }}
+                            </th>
+                            <td class="py-4 px-6">
+                                {{ user.email | upper }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ user.age | upper }}
+                            </td>
+                            <td class="py-4 px-6">
+                                {{ user.address | upper }}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <hr>
+        <div>
+            <p>{{ users | join(" | ") }}</p>
+        </div>
+
+    {% else %}
+        <div style="width: 50%; margin: auto"> 
+            No se encuentran datos
+        </div>
+    {% endif %}
+
+{% endblock %}
